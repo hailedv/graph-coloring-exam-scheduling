@@ -63,6 +63,70 @@ This minimum m = Chromatic Number χ
 
 ---
 
+### 📊 Graph Visualization
+
+#### Example: Computer Science Department (10 courses)
+
+```
+        CS101 ─────── CS201 ─────── CS301
+         │  \         │  \         │  \
+         │   \        │   \        │   \
+         │    \       │    \       │    \
+        CS102─CS202──CS302──CS402──CS403
+         │  /  │  /   │  /   │  /   │
+         │ /   │ /    │ /    │ /    │
+        CS103─CS203──CS303──CS404──CS405
+              │       │       │       │
+            CS204   CS304   CS405   CS406
+```
+
+**Legend:**
+- **Vertices (●)** = Courses
+- **Edges (─)** = Student conflicts (shared students)
+- **Colors** = Time slots (not shown in diagram)
+
+#### Full Graph Structure
+
+Our 50-course graph has **6 dense clusters** (departments):
+
+```
+┌─────────────┐   ┌─────────────┐   ┌─────────────┐
+│   CS Dept   │───│  Math Dept  │───│  Physics    │
+│  10 courses │   │  10 courses │   │  8 courses  │
+│  (Clique)   │   │  (Clique)   │   │  (Clique)   │
+└─────────────┘   └─────────────┘   └─────────────┘
+       │                 │                 │
+       └─────────────────┼─────────────────┘
+                         │
+       ┌─────────────────┴─────────────────┐
+       │                                   │
+┌─────────────┐   ┌─────────────┐   ┌─────────────┐
+│  Elec. Eng  │───│  Business   │───│  Electives  │
+│  9 courses  │   │  7 courses  │   │  6 courses  │
+│  (Clique)   │   │  (Clique)   │   │ (Sparse)    │
+└─────────────┘   └─────────────┘   └─────────────┘
+```
+
+**Graph Properties:**
+- **Vertices:** 50 courses
+- **Edges:** 228 conflicts
+- **Density:** High within departments, sparse between departments
+- **Chromatic Number:** χ = 10
+
+#### Why χ = 10?
+
+Each department forms a **clique** (complete subgraph):
+- Computer Science: 10 courses → needs 10 colors
+- Mathematics: 10 courses → needs 10 colors
+- Physics: 8 courses → needs 8 colors
+- Electrical Eng: 9 courses → needs 9 colors
+- Business: 7 courses → needs 7 colors
+- Electives: 6 courses (sparse) → needs fewer colors
+
+**Maximum clique size = 10** → Chromatic number χ = 10
+
+---
+
 ## ✨ Features
 
 ### Core Functionality
