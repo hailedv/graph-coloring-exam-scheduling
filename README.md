@@ -319,6 +319,35 @@ make
 ./exam_scheduler
 ```
 
+---
+
+### 🎯 Run in VS Code (Recommended)
+
+#### Method 1: Using Terminal (Easiest)
+1. Open VS Code in project folder
+2. Press `Ctrl + `` (backtick) to open terminal
+3. Run:
+   ```powershell
+   ./exam_scheduler.exe
+   ```
+
+#### Method 2: Using Tasks (Build & Run)
+1. Press `Ctrl + Shift + B` to build
+2. Press `Ctrl + Shift + P` → Type "Run Task" → Select "Run Program"
+
+#### Method 3: Using Debug (F5)
+1. Press `F5` to build and run with debugger
+2. Program opens in external console
+3. Interact with the menu
+
+**VS Code Shortcuts:**
+- `Ctrl + Shift + B` - Build project
+- `F5` - Run with debugger
+- `Ctrl + `` - Open terminal
+- `Ctrl + Shift + P` - Command palette
+
+---
+
 ### Quick Demo
 
 ```bash
