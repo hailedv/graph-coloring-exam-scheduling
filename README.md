@@ -65,65 +65,98 @@ This minimum m = Chromatic Number χ
 
 ### 📊 Graph Visualization
 
-#### Example: Computer Science Department (10 courses)
+#### Example: Small Graph (Simplified View)
 
-```
-        CS101 ─────── CS201 ─────── CS301
-         │  \         │  \         │  \
-         │   \        │   \        │   \
-         │    \       │    \       │    \
-        CS102─CS202──CS302──CS402──CS403
-         │  /  │  /   │  /   │  /   │
-         │ /   │ /    │ /    │ /    │
-        CS103─CS203──CS303──CS404──CS405
-              │       │       │       │
-            CS204   CS304   CS405   CS406
+```mermaid
+graph TD
+    CS101((CS101))
+    CS201((CS201))
+    CS301((CS301))
+    CS401((CS401))
+    MATH101((MATH101))
+    MATH201((MATH201))
+    PHY101((PHY101))
+    
+    CS101 ---|conflict| CS201
+    CS101 ---|conflict| CS301
+    CS101 ---|conflict| CS401
+    CS201 ---|conflict| CS301
+    CS201 ---|conflict| CS401
+    CS301 ---|conflict| CS401
+    
+    CS101 -.cross-dept.-> MATH101
+    CS301 -.cross-dept.-> PHY101
+    MATH101 ---|conflict| MATH201
+    
+    style CS101 fill:#ff6b6b
+    style CS201 fill:#4ecdc4
+    style CS301 fill:#45b7d1
+    style CS401 fill:#96ceb4
+    style MATH101 fill:#ffeaa7
+    style MATH201 fill:#dfe6e9
+    style PHY101 fill:#a29bfe
 ```
 
 **Legend:**
-- **Vertices (●)** = Courses
-- **Edges (─)** = Student conflicts (shared students)
-- **Colors** = Time slots (not shown in diagram)
+- 🔴 **Circles** = Courses (vertices)
+- **Solid lines** = Conflicts within department
+- **Dotted lines** = Cross-department conflicts
+- **Colors** = Different time slots
 
-#### Full Graph Structure
+---
 
-Our 50-course graph has **6 dense clusters** (departments):
+#### 📈 Full Graph Structure (50 Courses, 228 Edges)
+
+<div align="center">
 
 ```
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│   CS Dept   │───│  Math Dept  │───│  Physics    │
-│  10 courses │   │  10 courses │   │  8 courses  │
-│  (Clique)   │   │  (Clique)   │   │  (Clique)   │
-└─────────────┘   └─────────────┘   └─────────────┘
-       │                 │                 │
-       └─────────────────┼─────────────────┘
-                         │
-       ┌─────────────────┴─────────────────┐
-       │                                   │
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│  Elec. Eng  │───│  Business   │───│  Electives  │
-│  9 courses  │   │  7 courses  │   │  6 courses  │
-│  (Clique)   │   │  (Clique)   │   │ (Sparse)    │
-└─────────────┘   └─────────────┘   └─────────────┘
+                    🎓 AKSUM UNIVERSITY EXAM GRAPH
+                    
+    🔵 CS Dept          🟢 Math Dept        🟡 Physics
+    (10 courses)        (10 courses)        (8 courses)
+         ●●●●●              ●●●●●              ●●●●
+         ●●●●●              ●●●●●              ●●●●
+    All connected      All connected      All connected
+      (Clique)           (Clique)           (Clique)
+         │                  │                  │
+         └──────────────────┼──────────────────┘
+                            │
+         ┌──────────────────┴──────────────────┐
+         │                                     │
+    🟣 Elec. Eng       🟠 Business         🔴 Electives
+    (9 courses)        (7 courses)        (6 courses)
+       ●●●●●              ●●●●●              ●●●
+       ●●●●               ●●                 ●●●
+    All connected      All connected      Sparse
+      (Clique)           (Clique)         connections
 ```
 
-**Graph Properties:**
-- **Vertices:** 50 courses
-- **Edges:** 228 conflicts
-- **Density:** High within departments, sparse between departments
-- **Chromatic Number:** χ = 10
+</div>
 
-#### Why χ = 10?
+**Graph Statistics:**
+- 📍 **Vertices:** 50 courses
+- 🔗 **Edges:** 228 conflict pairs
+- 🎨 **Chromatic Number:** χ = 10
+- 📊 **Density:** 0.186 (18.6% of possible edges)
 
-Each department forms a **clique** (complete subgraph):
-- Computer Science: 10 courses → needs 10 colors
-- Mathematics: 10 courses → needs 10 colors
-- Physics: 8 courses → needs 8 colors
-- Electrical Eng: 9 courses → needs 9 colors
-- Business: 7 courses → needs 7 colors
-- Electives: 6 courses (sparse) → needs fewer colors
+---
 
-**Maximum clique size = 10** → Chromatic number χ = 10
+#### 🎨 Why Chromatic Number = 10?
+
+Each department forms a **complete graph (clique)**:
+
+| Department | Courses | Clique Size | Colors Needed |
+|---|---|---|---|
+| 🔵 Computer Science | 10 | K₁₀ | **10** ✓ |
+| 🟢 Mathematics | 10 | K₁₀ | **10** ✓ |
+| 🟡 Physics | 8 | K₈ | 8 |
+| 🟣 Electrical Eng | 9 | K₉ | 9 |
+| 🟠 Business | 7 | K₇ | 7 |
+| 🔴 Electives | 6 | Sparse | 3-4 |
+
+**Maximum clique size = 10** → **Chromatic number χ = 10**
+
+> 💡 **Key Insight:** Students take multiple courses within their department, creating dense conflicts. Cross-department conflicts are sparse, allowing color reuse.
 
 ---
 
