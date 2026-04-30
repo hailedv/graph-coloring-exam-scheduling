@@ -532,7 +532,6 @@ graph-coloring-exam-scheduling/
 │   └── c_cpp_properties.json # IntelliSense config
 ├── Makefile
 ├── README.md
-├── HOW_TO_RUN.md
 └── .gitignore
 ```
 
